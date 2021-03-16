@@ -1,5 +1,6 @@
 package com.usermanager.demo.controllers;
 
+import com.google.gson.Gson;
 import com.usermanager.demo.entities.User;
 import com.usermanager.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,12 @@ public class MainController {
   public String showIndex(ModelMap model,
                           @RequestParam(value="message", required=false,
                           defaultValue="Hello, World!") String message) {
-    Iterable<String> userIds = userService.getAllUserIds();
+
+    List<String> userIds = userService.getAllUserIds();
+    Gson gson = new Gson();
+
     model.addAttribute("message", message);
-    model.addAttribute("userIds", userIds);
+    model.addAttribute("userIds", gson.toJson(userIds));
     return "index";
   }
 }

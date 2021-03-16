@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%
-  String message = (String)request.getAttribute("message");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +18,7 @@
         <h5 class="card-title">Error</h5>
       </div>
       <div class="card-text mb-3">
-        <% out.println(message); %><br />
+        ${param.message}<br />
       </div>
       <form action="/" method="GET" novalidate>
         <button type="submit" class="btn btn-secondary">Return Home</button>

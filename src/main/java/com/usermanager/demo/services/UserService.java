@@ -20,7 +20,7 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public Iterable<String> getAllUserIds() {
+  public List<String> getAllUserIds() {
     Iterable<User> users = userRepository.findAll();
 
     List<String> userIds = new ArrayList<>();
@@ -44,7 +44,7 @@ public class UserService {
     return foundUser.get();
   }
 
-  public void UpdateUser(User userToUpdate) {
+  public void updateUser(User userToUpdate) {
     userRepository.save(userToUpdate);
   }
 }

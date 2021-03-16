@@ -1,8 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.usermanager.demo.entities.User" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
   User user= (User) request.getAttribute("user");
+  String userId = user.getId().toString();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +67,7 @@
       </div>
       <div>
        <form name="updateUser" action="/update" method="POST" novalidate>
+         <input type="hidden" id="userId" name="userId" value="<% out.print(userId); %>" />
          <div class="mb-1">
            <label for="username" class="form-label">Username</label><br />
            <input type="text" class="form-control-sm" name="username" id="username" placeholder="Username">
@@ -73,14 +76,14 @@
            <label for="email" class="form-label">Email</label><br />
            <input type="email" class="form-control-sm" name="email" id=email placeholder="Email">
          </div>
-         <div class="mb-1">
-           <label for="password" class="form-label">Password</label><br />
-           <input type="text" class="form-control-sm" name="password" id="password" placeholder="Password">
-         </div>
-         <div class="mb-3">
-           <label for="password-confirm" class="form-label">Confirm password</label><br />
-           <input type="text" class="form-control-sm" name="password-confirm" id="password-confirm" placeholder="Password confirmation">
-         </div>
+<%--         <div class="mb-1">--%>
+<%--           <label for="password" class="form-label">Password</label><br />--%>
+<%--           <input type="text" class="form-control-sm" name="password" id="password" placeholder="Password">--%>
+<%--         </div>--%>
+<%--         <div class="mb-3">--%>
+<%--           <label for="password-confirm" class="form-label">Confirm password</label><br />--%>
+<%--           <input type="text" class="form-control-sm" name="password-confirm" id="password-confirm" placeholder="Password confirmation">--%>
+<%--         </div>--%>
         <button type="submit" class="btn btn-sm btn-secondary">Update</button>
        </form>
       </div>

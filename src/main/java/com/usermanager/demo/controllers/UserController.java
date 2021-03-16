@@ -25,11 +25,11 @@ public class UserController {
 
   @PostMapping("/idSearch")
   public String showUserDetails(ModelMap model,
-                                @RequestParam (value = "userId") String userId) {
+                                @RequestParam (value = "queryId") String queryId) {
 
-    User queryUser = userService.getUserById(Long.parseLong(userId));
+    User queryUser = userService.getUserById(Long.parseLong(queryId));
     if (queryUser == null) {
-      throw new UserNotFoundException(userId);
+      throw new UserNotFoundException(queryId);
     }
 
     model.addAttribute("user", queryUser);
@@ -38,18 +38,43 @@ public class UserController {
 
   @PostMapping("/update")
   public String updateUser(ModelMap model,
+                           @RequestParam(value="userId") String userId,
                            @RequestParam(value="username") String username,
-                           @RequestParam(value="email") String email,
-                           @RequestParam(value="password") String password) {
+                           @RequestParam(value="email") String email
+//                          , @RequestParam(value="password") String password
+  ) {
+//    User user = userService.getUserById(Long.parseLong(userId));
 
-    model.addAttribute("username", username);
-    model.addAttribute("email", email);
-    model.addAttribute("password", password);
+    username = username.replaceAll("^\\s$", "");
+    email = email.replaceAll("^\\s$", "");
+
+    if (!username.isEmpty()) {
+      model.addAttribute("username", username);
+    }
+    if (!email.isEmpty()) {
+      model.addAttribute("email", email);
+    }
+
+    model.addAttribute("userId", userId);
+
+//    model.addAttribute("password", password);
     return "confirm";
   }
 
   @PostMapping("/confirmUpdate")
-  public String confirmUpdate(ModelMap model) {
+  public String confirmUpdate(ModelMap model,
+                              @RequestParam(value="userId") String userId,
+                              @RequestParam(value="username") String username,
+                              @RequestParam(value="email") String email) {
+
+    Long longId = Long.parseLong(userId);
+    User updateUser = userService.getUserById(longId);
+
+    updateUser.setUsername(username);
+    updateUser.setEmail(email);
+    userService.updateUser(updateUser);
+
+    model.addAttribute("updatedUser", updateUser);
     return "receipt";
   }
 }

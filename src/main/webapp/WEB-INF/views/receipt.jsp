@@ -1,13 +1,19 @@
+<%@ page import="java.util.List" %>
 <%@ page import="com.usermanager.demo.entities.User" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+  User user= (User) request.getAttribute("updatedUser");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Confirm User Changes</title>
+  <title>User Updated</title>
   <style>
       td {
           text-align: left;
+      }
+      .form-label {
+          font-size: small;
       }
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -20,45 +26,46 @@
   <div class="card text-center mx-auto mt-3" style="width: 18rem;
     background-color: #e9ecef;">
     <div class="card-body">
-      <div class="card-header">Confirm User Changes</div>
+      <div class="card-header">Updated User Details</div>
       <div>
         <table class="table table-sm table-striped vertical-align-top">
-          <c:if test="${param.username != null}">
           <tr>
             <th scope="row" class="text-end">
-              New username:
+              User ID:
             </th>
             <td>
-              ${param.username}
+              <% out.print(user.getId()); %>
             </td>
           </tr>
-          </c:if>
-          <c:if test="${param.email != null}">
           <tr>
             <th scope="row" class="text-end">
-              New email:
+              Name:
             </th>
             <td>
-              ${param.email}
+              <% out.print(user.getUsername()); %>
             </td>
           </tr>
-          </c:if>
-<%--          <tr>--%>
-<%--            <th scope="row" class="text-end">--%>
-<%--              Password:--%>
-<%--            </th>--%>
-<%--            <td>--%>
-<%--              <% out.print(password); %>--%>
-<%--            </td>--%>
-<%--          </tr>--%>
+          <tr>
+            <th scope="row" class="text-end">
+              Email:
+            </th>
+            <td>
+              <% out.print(user.getEmail()); %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="text-end">
+              Password:
+            </th>
+            <td>
+              <% out.print(user.getPassword()); %>
+            </td>
+          </tr>
         </table>
       </div>
       <div>
-        <form name="updateUser" action="/confirmUpdate" method="POST" novalidate>
-          <input type="hidden" id="userId" name="userId" value="${param.userId}" />
-          <input type="hidden" id="username" name="username" value="${param.username}" />
-          <input type="hidden" id="email" name="email" value="${param.email}" />
-          <button type="submit" class="btn btn-sm btn-secondary">Submit Changes</button>
+        <form name="returnHome" action="/" method="GET">
+          <button type="submit" class="btn btn-sm btn-secondary">Return Home</button>
         </form>
       </div>
     </div>
