@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mjtillman
-  Date: 3/11/21
-  Time: 11:44
-To change this template use File | Settings | File Templates.
---%>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%
   String message = (String)request.getAttribute("message");
@@ -25,14 +17,13 @@ To change this template use File | Settings | File Templates.
     background-color: #e9ecef;">
     <div class="card-body">
       <div class="card-header">
-        <h5 class="card-title">User Manager</h5>
+        <h5 class="card-title">Error</h5>
       </div>
-      <form name="idSearch" action="/idSearch" method="POST" novalidate>
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="userId" name="userId" placeholder="User ID" required>
-          <label for="userId">User ID</label>
-        </div>
-        <button type="submit" class="btn btn-secondary">Search</button>
+      <div class="card-text mb-3">
+        <% out.println(message); %><br />
+      </div>
+      <form action="/" method="GET" novalidate>
+        <button type="submit" class="btn btn-secondary">Return Home</button>
       </form>
     </div>
   </div>
