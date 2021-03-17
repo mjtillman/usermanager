@@ -20,7 +20,7 @@
       <div class="card-text mb-3">
         ${message}<br />
       </div>
-      <form action="/" method="GET" novalidate>
+      <form action="/" method="GET">
         <button type="submit" class="btn btn-secondary">Return Home</button>
       </form>
     </div>

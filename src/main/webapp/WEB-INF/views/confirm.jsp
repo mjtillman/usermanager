@@ -21,17 +21,17 @@
     <div class="card-body">
       <div class="card-header">Confirm User Changes</div>
       <div class="card-text">
-        <form name="updateUser" action="/confirmUpdate" method="POST" novalidate>
+        <form name="confirmUpdate" action="/confirmUpdate" method="POST" novalidate>
         <input type="hidden" id="userId" name="userId" value="${queryId}" />
         <table class="table table-sm table-striped vertical-align-top">
-        <c:if test="${newUsername.length()}> 0}">
+        <c:if test="${newUsername.length() > 0}">
           <tr>
            <th scope='row' class='text-end'>New username:</th>
             <td>${newUsername}</td>
             <input type="hidden" id="newUsername" name="newUsername" value="${newUsername}" />
           </tr>
         </c:if>
-        <c:if test="${newEmail.length() > 0}">"
+        <c:if test="${newEmail.length() > 0}">
           <tr>
             <th scope='row' class='text-end'>New email:</th>
             <td>${newEmail}</td>

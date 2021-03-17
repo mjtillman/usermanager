@@ -3,8 +3,6 @@ package com.usermanager.demo.controllers;
 import com.usermanager.demo.entities.User;
 import com.usermanager.demo.exceptions.UserNotFoundException;
 import com.usermanager.demo.services.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,14 +16,11 @@ import java.util.Map;
 @Controller
 public class UserController {
 
-  Logger log = LoggerFactory.getLogger(UserController.class);
-
   @Autowired
   private UserService userService;
 
   @GetMapping("/idSearch")
-  public String searchError(ModelMap model,
-                            @RequestParam(value="queryId") String queryId) {
+  public String searchError(ModelMap model) {
 
     String message = "No user ID provided.<br />Please try again.";
     model.addAttribute("message", message);
@@ -53,13 +48,13 @@ public class UserController {
                            @RequestParam(value = "newEmail", required = false) String newEmail,
                            @RequestParam(value = "newPassword", required = false) String newPassword) {
 
-    if (newUsername.length() > 0) {
+    if (newUsername != null) {
       model.addAttribute("newUsername", newUsername);
     }
-    if (newEmail.length() > 0) {
+    if (newEmail != null) {
       model.addAttribute("newEmail", newEmail);
     }
-    if (newPassword.length() > 0) {
+    if (newPassword != null) {
       model.addAttribute("newPassword", newPassword);
     }
 
