@@ -1,9 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.usermanager.demo.entities.User" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%
-  User user= (User) request.getAttribute("updatedUser");
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +15,7 @@
 </head>
 <body class="bg-dark">
 <nav class="navbar navbar-dark container-fluid" style="background-color: #000000;" >
-  <a href="index.jsp" class="navbar-brand">User Manager</a>
+  <a href="/" class="navbar-brand">User Manager</a>
 </nav>
 <main>
   <div class="card text-center mx-auto mt-3" style="width: 18rem;
@@ -33,33 +28,25 @@
             <th scope="row" class="text-end">
               User ID:
             </th>
-            <td>
-              <% out.print(user.getId()); %>
-            </td>
+            <td>${userId}</td>
           </tr>
           <tr>
             <th scope="row" class="text-end">
               Name:
             </th>
-            <td>
-              <% out.print(user.getUsername()); %>
-            </td>
+            <td>${username}</td>
           </tr>
           <tr>
             <th scope="row" class="text-end">
               Email:
             </th>
-            <td>
-              <% out.print(user.getEmail()); %>
-            </td>
+            <td>${email}</td>
           </tr>
           <tr>
             <th scope="row" class="text-end">
               Password:
             </th>
-            <td>
-              <% out.print(user.getPassword()); %>
-            </td>
+            <td>${password}</td>
           </tr>
         </table>
       </div>

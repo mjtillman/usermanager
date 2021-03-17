@@ -1,8 +1,9 @@
 package com.usermanager.demo.controllers;
 
 import com.google.gson.Gson;
-import com.usermanager.demo.entities.User;
 import com.usermanager.demo.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Controller
 public class MainController {
+
+  Logger log = LoggerFactory.getLogger(MainController.class);
 
   @Autowired
   private UserService userService;

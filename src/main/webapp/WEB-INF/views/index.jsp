@@ -1,15 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mjtillman
-  Date: 3/11/21
-  Time: 11:44
-To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%
-  String message = (String)request.getAttribute("message");
-  String userIds = (String)request.getAttribute("userIds");
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +20,7 @@ To change this template use File | Settings | File Templates.
 </head>
 <body class="bg-dark">
 <nav class="navbar navbar-dark container-fluid" style="background-color: #000000;" >
-  <a href="index.jsp" class="navbar-brand">User Manager</a>
+  <a href="/" class="navbar-brand">User Manager</a>
 </nav>
 <main>
   <div class="card text-center mx-auto mt-3" style="width: 18rem;

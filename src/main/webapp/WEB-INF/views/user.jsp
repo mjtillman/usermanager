@@ -1,15 +1,23 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.usermanager.demo.entities.User" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-  User user= (User) request.getAttribute("user");
-  String userId = user.getId().toString();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>View User Details</title>
+  <script>
+    function validatePassword() {
+      const span = document.getElementById("valid");
+      const password = document.forms["updateUser"]["newPassword"];
+      const confirmPassword = document.forms["updateUser"]["password-confirm"];
+
+      if (password.value === confirmPassword.value) {
+        return true;
+      } else {
+        span.innerHTML = "Passwords do not match!"
+        return false;
+      }
+    }
+  </script>
   <style>
     td {
         text-align: left;
@@ -22,7 +30,7 @@
 </head>
 <body class="bg-dark">
 <nav class="navbar navbar-dark container-fluid" style="background-color: #000000;" >
-  <a href="index.jsp" class="navbar-brand">User Manager</a>
+  <a href="/" class="navbar-brand">User Manager</a>
 </nav>
 <main>
   <div class="card text-center mx-auto mt-3" style="width: 18rem;
@@ -33,57 +41,49 @@
           <table class="table table-sm table-striped vertical-align-top">
             <tr>
               <th scope="row" class="text-end">
-                User ID:
-              </th>
-              <td>
-                <% out.print(user.getId()); %>
-              </td>
+                User ID:</th>
+              <td>${queryId}</td>
             </tr>
             <tr>
               <th scope="row" class="text-end">
-                Name:
-              </th>
-              <td>
-                <% out.print(user.getUsername()); %>
-              </td>
+                Name:</th>
+              <td>${username}</td>
             </tr>
             <tr>
               <th scope="row" class="text-end">
                 Email:
               </th>
-              <td>
-                <% out.print(user.getEmail()); %>
-              </td>
+              <td>${email}</td>
             </tr>
             <tr>
               <th scope="row" class="text-end">
                 Password:
               </th>
-              <td>
-                <% out.print(user.getPassword()); %>
-              </td>
+              <td>${password}</td>
             </tr>
           </table>
-      </div>
+        </div>
       <div>
-       <form name="updateUser" action="/update" method="POST" novalidate>
-         <input type="hidden" id="userId" name="userId" value="<% out.print(userId); %>" />
+
+       <form name="updateUser" action="/update" method="POST" onsubmit="return validatePassword()">
+         <input type="hidden" id="queryId" name="queryId" value="${queryId}">
          <div class="mb-1">
-           <label for="username" class="form-label">Username</label><br />
-           <input type="text" class="form-control-sm" name="username" id="username" placeholder="Username">
+           <label for="newUsername" class="form-label">Username</label><br />
+           <input type="text" class="form-control-sm" name="newUsername" id="newUsername" placeholder="Username">
          </div>
          <div class="mb-1">
-           <label for="email" class="form-label">Email</label><br />
-           <input type="email" class="form-control-sm" name="email" id=email placeholder="Email">
+           <label for="newEmail" class="form-label">Email</label><br />
+           <input type="email" class="form-control-sm" name="newEmail" id="newEmail" placeholder="Email">
          </div>
-<%--         <div class="mb-1">--%>
-<%--           <label for="password" class="form-label">Password</label><br />--%>
-<%--           <input type="text" class="form-control-sm" name="password" id="password" placeholder="Password">--%>
-<%--         </div>--%>
-<%--         <div class="mb-3">--%>
-<%--           <label for="password-confirm" class="form-label">Confirm password</label><br />--%>
-<%--           <input type="text" class="form-control-sm" name="password-confirm" id="password-confirm" placeholder="Password confirmation">--%>
-<%--         </div>--%>
+         <div class="mb-1">
+           <label for="newPassword" class="form-label">Password</label><br />
+           <input type="text" class="form-control-sm" name="newPassword" id="newPassword" placeholder="Password">
+         </div>
+         <div class="mb-3">
+           <label for="password-confirm" class="form-label">Confirm password</label><br />
+           <input type="text" class="form-control-sm" name="password-confirm" id="password-confirm" placeholder="Password confirmation"><br /><br />
+           <strong><span id="valid" style="color: red;"></span></strong>
+         </div>
         <button type="submit" class="btn btn-sm btn-secondary">Update</button>
        </form>
       </div>

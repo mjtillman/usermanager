@@ -8,7 +8,7 @@
 </head>
 <body class="bg-dark">
 <nav class="navbar navbar-dark container-fluid" style="background-color: #000000;" >
-  <a href="index.jsp" class="navbar-brand">User Manager</a>
+  <a href="/" class="navbar-brand">User Manager</a>
 </nav>
 <main>
   <div class="card text-center mx-auto mt-3" style="width: 18rem;
@@ -18,7 +18,7 @@
         <h5 class="card-title">Error</h5>
       </div>
       <div class="card-text mb-3">
-        ${param.message}<br />
+        ${message}<br />
       </div>
       <form action="/" method="GET" novalidate>
         <button type="submit" class="btn btn-secondary">Return Home</button>
